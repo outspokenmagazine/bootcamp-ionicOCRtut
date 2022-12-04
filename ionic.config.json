@@ -1,0 +1,7 @@
+{
+  "name": "ionicOCRtut",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
