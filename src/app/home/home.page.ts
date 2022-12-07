@@ -10,10 +10,11 @@ import * as Tesseract from 'tesseract.js';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  worker: Tesseract.Worker | undefined;
+  worker!: Tesseract.Worker;
+
   workerReady = false;
   image: Tesseract.ImageLike = 'https://tesseract.projectnaptha.com/img/eng_bw.png';
-  ocrResult: string | undefined  = 'noch nichts erkannt';
+  ocrResult: string  = 'noch nichts erkannt';
   captureProgress = 0;
 
   constructor() {
@@ -31,8 +32,8 @@ export class HomePage {
     });
 
     (async () => {
-      await this.worker?.loadLanguage('eng');
-      await this.worker?.initialize('eng');
+      await this.worker.loadLanguage('eng');
+      await this.worker.initialize('eng');
       this.workerReady = true;
     })();
 
@@ -50,7 +51,7 @@ export class HomePage {
   }
 
   async recognizeImage() {
-    const result = await this.worker?.recognize(this.image);
-    this.ocrResult = result?.data.text;
+    const result = await this.worker.recognize(this.image);
+    this.ocrResult = result.data.text;
   }
 }
